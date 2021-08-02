@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <div *ngIf="loading" class="d-flex justify-content-center mt-5">
+        <app-spinner></app-spinner>
+    </div>
+    <div *ngIf = "!loading" class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center titulo">Login</h2>
+                    <form [formGroup]="loginForm" (ngSubmit)="login()"><!--enlaza con ts-->
+                        <div class="mb-3">
+                            <input type="text" formControlName="usuario" class="form-control form-control-lg" placeholder="Correo"><!--form-control-lg para hacer que cresca un campo un poco mas-->
+                        </div>
+                        <span class="text-danger" *ngIf="loginForm.get('usuario')?.hasError('required') && loginForm.get('usuario')?.touched"><!--Validar el campo-->
+                            El correo <strong>es requerido</strong>
+                        </span>
+                        <span class="text-danger" *ngIf="loginForm.get('usuario')?.hasError('email') && loginForm.get('usuario')?.touched"><!--Validar el campo-->
+                            Correo <strong>inválido</strong>
+                        </span>
+                        <div class="mb-3">
+                            <input type="password" formControlName="password" class="form-control form-control-lg" placeholder="Contraseña">
+                            <span class="text-danger" *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched"><!--Validar el campo-->
+                                Contraseña <strong>es requerido</strong>
+                            </span>
+                        </div>
+                        <button class="btn btn-secondary btn-lg" routerLink="/">Volver</button>
+                        <button type = "submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-lg float-end">Ingresar a cuenta</button><!--[disabled]="loginForm.invalid" para poner el boton en invalitado hasta que todo sea valido-->
+                    </form>
+                    <br>
+                    <div class="text-center">
+                        <a routerLink="/usuario/register">Registrarse</a>
+                        <br>
+                        <a routerLink="/usuario/recuperarPassword">Recuperar contraseña</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

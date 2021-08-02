@@ -1,0 +1,19 @@
+<div *ngIf = "loading" class="contenedor">
+    <!--Bootstrap flex para pocicionar los componentes-->
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!loading" class="contenedor">
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+        <strong>{{errorText}}</strong>
+    </div>
+    <input [(ngModel)]="pin" type="text" class="form-control input-ingresar mb-3" placeholder="PIN del juego"><!--mb-3 margen del boton-->
+    <button (click)="ingresar()" class="btn-ingresar btn-principal">Ingresar</button>
+</div>
+<div class="fixed-bottom"><!--Se fija el texto al pie de la pagina-->
+    <p class="text-center text">
+        Crea tu propio cuestionario Gratis
+        <a class="link" routerLink="/usuario">aqui</a>
+    </p>
+</div>
+
